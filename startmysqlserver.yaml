@@ -1,0 +1,10 @@
+---
+ - name: start mysql
+   hosts: local
+   become: yes
+   tasks:
+   - name: start service
+     service: 
+      name: mysql
+      state: started
+

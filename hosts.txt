@@ -4,4 +4,4 @@ testans2 ansible_host=172.17.24.11
 
 
 [local]
-testlocal ansible_host=178.154.228.18
+testlocal ansible_host=localhost
