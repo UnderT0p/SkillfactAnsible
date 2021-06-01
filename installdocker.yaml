@@ -1,0 +1,20 @@
+---
+ - name: install docker
+   hosts: local
+   become: yes
+   tasks:
+   - name: apt docker
+     apt:
+      pkg:
+       - docker-ce
+       - docker-ce-cli
+       - containerd.io 
+#  - name: start docker
+#     service: 
+#      name:
+#       docker
+#      state:
+#       started
+#      enabled:
+#       yes
+
