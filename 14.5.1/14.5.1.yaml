@@ -1,0 +1,17 @@
+---
+ - name: add user user1
+   hosts: test
+   become: yes
+   tasks:
+   - name: add user user1
+     user: name=user1 append=yes state=present createhome=yes shell=/bin/bash
+   - name: create directory
+     file:
+       path: /home/user1/.ssh
+       state: directory
+       owner: user1
+       mode: '740'
+   - name: copy key
+     copy:
+       src: /home/ansible/sf-ansib/id_rsa.pub
+       dest: /home/user1/.ssh/id_rsa.pub
