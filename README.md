@@ -17,3 +17,14 @@
  ansible-playbook -t 'init postfix' postfix.yaml -i hosts.txt
  
  ansible-playbook -t 'drop postfix' postfix.yaml -i hosts.txt
+
+
+14.6.1
+
+vsftpd - папка с ролью, в ней привел то, куда вносил изменения
+
+ftp.yaml - playbook с роью
+
+hosts - адрес хоста
+
+status_ftp.png - скрин запущенного сервиса фтп на целевой машине.
