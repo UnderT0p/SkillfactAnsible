@@ -1,0 +1,22 @@
+---
+# tasks file for nginx+php-fpm
+ - name: Install Nginx
+   apt: name=nginx update_cache=yes state=latest
+
+ - name: Start Nginx and boot
+   service: name=nginx state=started enabled=yes
+
+ - name: create directory
+   file:
+    path: /opt/nginx
+    state: directory
+ - name: create directory
+   file: path={{ destin_file }} state=directory
+ - name: Install PHP-FPM
+   apt: name=php-fpm update_cache=yes state=latest
+ - name: copy nginx conf
+   template: src={{ source_file_nginx }} dest={{ dest_nginx }}
+
+ - name: Copy files in www
+   copy: src={{ source_file }} dest={{ destin_file }}/index.php
+   notify: restart nginx
