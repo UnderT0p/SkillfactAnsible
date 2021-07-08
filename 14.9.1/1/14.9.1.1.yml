@@ -8,6 +8,8 @@
    tasks:
    - name: install dns
      apt:
+      update_cache: yes
+      pkg:
       - dnsmasq
    - name: copy conf
      copy: src={{ dns.conf }} dest=/etc/dnsmasq.d
