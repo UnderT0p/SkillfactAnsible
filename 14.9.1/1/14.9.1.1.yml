@@ -16,7 +16,7 @@
    - name:
      service:
       name: systemd-resolved
-      state: stoped
+      state: stopped
       enabled: no
      when: ansible_distribution == "Ubuntu"
    - name: restart dns
