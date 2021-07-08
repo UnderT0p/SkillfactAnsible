@@ -1,0 +1,24 @@
+---
+ - name: add users
+   hosts: test
+   become: yes
+
+   vars:
+    dns.conf: ./dns.conf
+   tasks:
+   - name: install dns
+     apt:
+      - dnsmasq
+   - name: copy conf
+     copy: src={{ dns.conf }} dest=/etc/dnsmasq.d
+   - name:
+     service:
+      name: systemd-resolved
+      state: stoped
+      enabled: no
+     when: ansible_os_family == "Ubuntu"
+   - name: restart dns
+     service:
+      name: dnsmasq
+      state: restarted
+      enabled: yes
