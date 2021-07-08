@@ -1,0 +1,45 @@
+---
+ - name: add users
+   hosts: test
+   become: yes
+   tasks:
+   - name: add superusers group
+     group:
+      name: superusers
+      state: present
+   - name: add user2
+     user:
+      name: user2
+      append: yes
+      group: sudo
+      groups: superusers
+      state: present
+      createhome: yes
+      shell: /bin/bash
+   - name: add user3
+     user:
+      name: user3
+      append: yes
+      group: sudo
+      groups: superusers
+      state: present
+      createhome: yes
+      shell: /bin/bash
+   - name: set up authorized keys for the user2
+     authorized_key: user=user2 key="{{item}}"
+     with_file:
+        - /home/ansible/.ssh/id_rsa.pub
+   - name: set up authorized keys for the user3
+     authorized_key: user=user3 key="{{item}}"
+     with_file:
+        - /home/ansible/.ssh/id_rsa.pub
+   - name: allow user2 to have passwordless sudo
+     lineinfile:
+        dest: /etc/sudoers
+        line: 'user2 ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+   - name: allow user3 to have passwordless sudo
+     lineinfile:
+        dest: /etc/sudoers
+        line: 'user3 ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
