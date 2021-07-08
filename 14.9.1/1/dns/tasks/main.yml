@@ -1,9 +1,4 @@
 ---
- - name: add users
-   hosts: test
-   become: yes
-
-   tasks:
    - name: install dns
      apt:
       update_cache: yes
