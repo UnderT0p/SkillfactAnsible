@@ -1,0 +1,21 @@
+server {
+    listen      80;
+    server_name example.org www.example.org;
+    root        {{ destin_file }};
+    index index.php;
+
+    location / {
+        index   index.php;
+    }
+
+    location ~* \.(gif|jpg|png)$ {
+        expires 30d;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass  unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME
+                      $document_root$fastcgi_script_name;
+        include       fastcgi_params;
+    }
+}
