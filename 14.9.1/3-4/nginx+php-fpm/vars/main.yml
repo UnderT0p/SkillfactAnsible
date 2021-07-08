@@ -1,0 +1,6 @@
+---
+  source_file: ./index.php
+  destin_file: /opt/nginx/ansible
+  source_file_nginx: ./default.j2
+  dest_nginx: /etc/nginx/sites-available/default
+# vars file for nginx+php-fpm
