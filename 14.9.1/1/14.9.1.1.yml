@@ -4,7 +4,7 @@
    become: yes
 
    vars:
-    dns.conf: ./dns.conf
+    dns_conf: ./dns.conf
    tasks:
    - name: install dns
      apt:
@@ -12,7 +12,7 @@
       pkg:
       - dnsmasq
    - name: copy conf
-     copy: src={{ dns.conf }} dest=/etc/dnsmasq.d
+     copy: src={{ dns_conf }} dest=/etc/dnsmasq.d
    - name:
      service:
       name: systemd-resolved
