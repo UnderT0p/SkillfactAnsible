@@ -18,7 +18,7 @@
       name: systemd-resolved
       state: stoped
       enabled: no
-     when: ansible_os_family == "Ubuntu"
+     when: ansible_distribution == "Ubuntu"
    - name: restart dns
      service:
       name: dnsmasq
