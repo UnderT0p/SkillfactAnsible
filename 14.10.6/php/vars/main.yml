@@ -1,0 +1,5 @@
+---
+ conf_phpftm: ./www.conf
+ dest_conf_phpftp: /etc/php/7.4/fpm/pool.d/www.conf
+ index_php: ./index.php
+# vars file for php
