@@ -1,0 +1,3 @@
+---
+ source_file_nginx: ./default
+ dest_nginx: /etc/nginx/sites-available/default
