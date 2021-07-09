@@ -1,0 +1,27 @@
+---
+ - name: Install PHP-FPM
+   apt:
+     name: php7.4-fpm
+     update_cache: yes
+
+ - name: Start php
+   service:
+    name: php7.4-fpm
+    state: started
+    enabled: yes
+ - name: create directory
+   file:
+    path: /var/www
+    state: directory
+ - name: create directory
+   file:
+    path: /var/www/html
+    state: directory
+ - name: copy config
+   copy: src={{ conf_phpftm }} dest={{dest_conf_phpftp}}
+ - name: copy index
+   copy: src={{index_php}} dest=/var/www/html
+ - name: chmod
+   file:
+    path: /var/www/html/index.php
+   notify: restart php
