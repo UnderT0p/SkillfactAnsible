@@ -1,0 +1,13 @@
+---
+ - name: install nginx and user2 create
+   hosts: nginx
+   become: yes
+   roles:
+    - users
+    - http
+ - name: install php and user2 create
+   hosts: php
+   become: yes
+   roles:
+    - users
+    - php
